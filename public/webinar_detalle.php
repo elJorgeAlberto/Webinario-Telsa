@@ -31,6 +31,14 @@ if ($stmt->rowCount() == 0) {
 
 $webinar = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Verificar si el usuario ya está inscrito
+$sql = "SELECT * FROM inscripciones WHERE webinar_id = :webinar_id AND usuario_id = :usuario_id";
+$stmt = $conexion->prepare($sql);
+$stmt->bindParam(':webinar_id', $webinar_id);
+$stmt->bindParam(':usuario_id', $_SESSION['id']);
+$stmt->execute();
+$inscrito = $stmt->rowCount() > 0;
+
 // Procesar la actualización del webinario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action'])) {
@@ -109,6 +117,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mensaje = "Error al eliminar el webinario.";
             }
         }
+    }
+}
+
+// Procesar la inscripción
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'inscribirse') {
+    // Verificar si hay cupos disponibles
+    if ($webinar['cupos'] > 0) {
+        try {
+            $conexion->beginTransaction();
+
+            // Insertar inscripción
+            $sql = "INSERT INTO inscripciones (webinar_id, usuario_id) VALUES (:webinar_id, :usuario_id)";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(':webinar_id', $webinar_id);
+            $stmt->bindParam(':usuario_id', $_SESSION['id']);
+            $stmt->execute();
+
+            // Actualizar cupos disponibles
+            $sql = "UPDATE webinarios SET cupos = cupos - 1 WHERE id = :id AND cupos > 0";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(':id', $webinar_id);
+            $stmt->execute();
+
+            $conexion->commit();
+            $mensaje = "Te has inscrito exitosamente al webinar.";
+            $inscrito = true;
+            
+            // Actualizar los cupos mostrados
+            $webinar['cupos']--;
+            
+        } catch (Exception $e) {
+            $conexion->rollBack();
+            $mensaje = "Error al procesar la inscripción.";
+        }
+    } else {
+        $mensaje = "Lo sentimos, no hay cupos disponibles.";
     }
 }
 
@@ -207,8 +251,8 @@ include __DIR__ . '/../views/header.php';
 
                 <h2><?php echo htmlspecialchars($webinar['nombre']); ?></h2>
                 <p><strong>Categoría:</strong> <?php echo htmlspecialchars($webinar['categoria']); ?></p>
-                <p><strong>Fecha:</strong> <?php echo $webinar['fecha']; ?></p>
-                <p><strong>Hora:</strong> <?php echo $webinar['hora']; ?></p>
+                <p><strong>Fecha:</strong> <?php echo date('d/m/Y', strtotime($webinar['fecha'])); ?></p>
+                <p><strong>Hora:</strong> <?php echo date('H:i', strtotime($webinar['hora'])); ?> hrs</p>
                 <p><strong>Cupos disponibles:</strong> <?php echo $webinar['cupos']; ?></p>
                 <p><strong>Ponentes:</strong> <?php echo htmlspecialchars($webinar['ponentes']); ?></p>
                 <p><strong>Duración:</strong> <?php echo $webinar['duracion']; ?> minutos</p>
@@ -216,11 +260,24 @@ include __DIR__ . '/../views/header.php';
                     <h3>Descripción:</h3>
                     <p><?php echo nl2br(htmlspecialchars($webinar['descripcion'])); ?></p>
                 </div>
-                <?php if($webinar['link_sesion']): ?>
-                    <a href="<?php echo htmlspecialchars($webinar['link_sesion']); ?>" class="btn btn-primary" target="_blank">Unirse al Webinar</a>
-                <?php endif; ?>
+                
                 <div class="button-group">
-                    <a href="javascript:history.back()" class="btn btn-secondary">Volver al Dashboard</a>
+                    <?php if(!$inscrito && $webinar['cupos'] > 0): ?>
+                        <form action="" method="post" style="display: inline;">
+                            <input type="hidden" name="action" value="inscribirse">
+                            <button type="submit" class="btn btn-primary">Inscribirse al Webinar</button>
+                        </form>
+                    <?php elseif($inscrito): ?>
+                        <?php if($webinar['link_sesion']): ?>
+                            <a href="<?php echo htmlspecialchars($webinar['link_sesion']); ?>" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-video"></i> Unirse al Webinar
+                            </a>
+                        <?php endif; ?>
+                        <p class="success-message">Ya estás inscrito en este webinar</p>
+                    <?php else: ?>
+                        <p class="error-message">No hay cupos disponibles</p>
+                    <?php endif; ?>
+                    <a href="javascript:history.back()" class="btn btn-secondary">Volver</a>
                 </div>
             </div>
         <?php endif; ?>
