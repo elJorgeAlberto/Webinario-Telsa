@@ -1,5 +1,10 @@
 /* Estilos generales */
+html {
+    font-size: 62.5%; /* Esto hace que 1rem = 10px */
+}
+
 body {
+    font-size: 1.6rem; /* Esto equivale a 16px */
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     margin: 0;
@@ -10,9 +15,9 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 120rem; /* 1200px */
     margin: auto;
-    padding: 20px;
+    padding: 2rem; /* 20px */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,20 +28,21 @@ h1, h2, h3, h4, h5, h6 {
 /* Navbar */
 .navbar {
     background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    height: 6rem; /* Añade una altura fija a la barra de navegación */
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
+    padding: 1.6rem 3.2rem;
+    max-width: 120rem; /* 1200px */
     margin: 0 auto;
 }
 
@@ -46,12 +52,12 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     color: #2c3e50;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 2.4rem;
 }
 
 .logo-img {
-    height: 40px;
-    margin-right: 10px;
+    height: 4rem; /* 40px */
+    margin-right: 1rem; /* 10px */
 }
 
 .navbar-menu {
@@ -62,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-menu li {
-    margin-left: 1.5rem;
+    margin-left: 2.4rem;
 }
 
 .navbar-menu a {
@@ -79,8 +85,8 @@ h1, h2, h3, h4, h5, h6 {
 .login-btn {
     background-color: #3498db;
     color: #ffffff !important;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.5rem; /* 5px */
     transition: background-color 0.3s ease;
 }
 
@@ -88,23 +94,29 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #2980b9;
 }
 
+.navbar-toggle {
+    display: none;
+    font-size: 2.4rem;
+    cursor: pointer;
+}
+
 /* Formularios */
 .form-container {
     background-color: #ffffff;
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 2rem auto;
+    border-radius: 0.8rem;
+    padding: 3.2rem;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+    max-width: 50rem;
+    margin: 3.2rem auto;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.4rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     color: #2c3e50;
     font-weight: 500;
 }
@@ -113,11 +125,12 @@ h1, h2, h3, h4, h5, h6 {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
+    padding: 1.2rem;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
     transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Añadido para incluir padding en el ancho total */
 }
 
 .form-group input:focus,
@@ -125,17 +138,32 @@ h1, h2, h3, h4, h5, h6 {
 .form-group select:focus {
     border-color: #3498db;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+/* Ajustes para inputs específicos */
+.form-group input[type="date"],
+.form-group input[type="time"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 10rem;
 }
 
 .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 1.2rem 2.4rem;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%; /* Hacer que los botones ocupen todo el ancho */
 }
 
 .btn-primary {
@@ -158,33 +186,33 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dashboard */
 .dashboard {
-    padding-top: 80px;
+    padding-top: 8rem; /* 80px */
 }
 
 .welcome-section {
     background-color: #ffffff;
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0.8rem; /* 8px */
+    padding: 3.2rem;
+    margin-bottom: 3.2rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* 200px */
+    gap: 1.6rem;
 }
 
 .stat-card {
     background-color: #ffffff;
-    border-radius: 8px;
-    padding: 1.5rem;
+    border-radius: 0.8rem; /* 8px */
+    padding: 2.4rem;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
 }
 
 .stat-number {
-    font-size: 2rem;
+    font-size: 3.2rem;
     font-weight: bold;
     color: #3498db;
 }
@@ -192,19 +220,19 @@ h1, h2, h3, h4, h5, h6 {
 /* Webinars */
 .webinar-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr)); /* 250px */
+    gap: 1.6rem;
 }
 
 .webinar-card {
     background-color: #ffffff;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0.8rem; /* 8px */
+    padding: 1.6rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 76.8rem) { /* 768px */
     .navbar-menu {
         display: none;
         flex-direction: column;
@@ -213,7 +241,7 @@ h1, h2, h3, h4, h5, h6 {
         left: 0;
         right: 0;
         background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
     }
 
     .navbar-menu.active {
@@ -221,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .navbar-menu li {
-        margin: 1rem 0;
+        margin: 1.6rem 0;
     }
 
     .navbar-toggle {
@@ -231,4 +259,9 @@ h1, h2, h3, h4, h5, h6 {
     .form-row {
         flex-direction: column;
     }
+}
+
+/* Contenido principal */
+.main-header {
+    padding-top: 8rem; /* Añade padding superior para compensar la altura de la navbar */
 }

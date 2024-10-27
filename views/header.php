@@ -32,7 +32,7 @@
         </div>
     </nav>
     <div class="container">
-        <header>
+        <header class="main-header">
             <h1>Bienvenido a ReservasTelsa</h1>
         </header>
         <!-- Agrega esta línea justo antes del cierre de la etiqueta </body> -->
