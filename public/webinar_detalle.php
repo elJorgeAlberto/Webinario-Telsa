@@ -110,8 +110,16 @@ include __DIR__ . '/../views/header.php';
 
         <?php if(($_SESSION['rol'] ?? '') === 'admin'): ?>
             <!-- Formulario de edición para administradores -->
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $webinar_id); ?>" method="post" class="form-container">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $webinar_id); ?>" method="post" class="form-container" enctype="multipart/form-data">
                 <h2>Editar Webinario</h2>
+                
+                <!-- Mostrar imagen actual -->
+                <?php if($webinar['imagen']): ?>
+                    <div class="current-image">
+                        <img src="<?php echo htmlspecialchars($webinar['imagen']); ?>" alt="Imagen del webinario">
+                    </div>
+                <?php endif; ?>
+
                 <div class="form-group">
                     <label for="nombre">Nombre del Webinario:</label>
                     <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($webinar['nombre']); ?>" required>
@@ -148,6 +156,10 @@ include __DIR__ . '/../views/header.php';
                     <label for="duracion">Duración (en minutos):</label>
                     <input type="number" id="duracion" name="duracion" value="<?php echo $webinar['duracion']; ?>" required>
                 </div>
+                <div class="form-group">
+                    <label for="imagen">Nueva imagen (opcional):</label>
+                    <input type="file" id="imagen" name="imagen" accept="image/*">
+                </div>
                 <div class="button-group">
                     <input type="hidden" name="action" value="update">
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
@@ -158,6 +170,12 @@ include __DIR__ . '/../views/header.php';
         <?php else: ?>
             <!-- Vista de solo lectura para usuarios normales -->
             <div class="webinar-info">
+                <?php if($webinar['imagen']): ?>
+                    <div class="webinar-image">
+                        <img src="<?php echo htmlspecialchars($webinar['imagen']); ?>" alt="Imagen del webinario">
+                    </div>
+                <?php endif; ?>
+
                 <h2><?php echo htmlspecialchars($webinar['nombre']); ?></h2>
                 <p><strong>Categoría:</strong> <?php echo htmlspecialchars($webinar['categoria']); ?></p>
                 <p><strong>Fecha:</strong> <?php echo $webinar['fecha']; ?></p>

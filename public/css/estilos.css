@@ -470,3 +470,35 @@ h1, h2, h3, h4, h5, h6 {
 .page-header {
     margin-bottom: 2rem;
 }
+
+/* Estilos para las imágenes de webinarios */
+.current-image,
+.webinar-image {
+    margin-bottom: 2rem;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+}
+
+.current-image img,
+.webinar-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.webinar-image {
+    max-width: 60rem;
+    margin: 0 auto 2rem auto;
+}
+
+.current-image {
+    max-width: 30rem;
+    margin-bottom: 2rem;
+}
+
+/* Ajuste para el formulario de edición */
+.form-container {
+    max-width: 60rem;
+}
