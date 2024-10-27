@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS webinarios (
     cupos INT NOT NULL,
     descripcion TEXT NOT NULL,
     ponentes VARCHAR(255) NOT NULL,
-    duracion VARCHAR(50) NOT NULL,
+    duracion INT NOT NULL, -- Cambiado a INT para almacenar minutos
     categoria VARCHAR(100) NOT NULL,
     imagen VARCHAR(255) NOT NULL,
     creado_por INT NOT NULL,

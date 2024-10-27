@@ -143,11 +143,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ajustes para inputs específicos */
 .form-group input[type="date"],
-.form-group input[type="time"] {
+.form-group input[type="time"],
+.form-group input[type="number"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background-color: #fff;
+}
+
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 1.2rem;
 }
 
 .form-group textarea {
@@ -163,25 +169,25 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.6rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
     width: 100%; /* Hacer que los botones ocupen todo el ancho */
 }
 
-.btn-primary {
+.btn-primary,
+.login-btn {
     background-color: #3498db;
     color: #ffffff;
 }
 
-.btn-primary:hover {
-    background-color: #2980b9;
-}
-
 .btn-secondary {
-    background-color: #95a5a6;
+    background-color: rgba(52, 152, 219, 0.8); /* Un poco más claro */
     color: #ffffff;
 }
 
-.btn-secondary:hover {
-    background-color: #7f8c8d;
+.btn-primary:hover,
+.btn-secondary:hover,
+.login-btn:hover {
+    background-color: #2980b9;
 }
 
 /* Dashboard */
@@ -226,9 +232,41 @@ h1, h2, h3, h4, h5, h6 {
 
 .webinar-card {
     background-color: #ffffff;
-    border-radius: 0.8rem; /* 8px */
-    padding: 1.6rem;
+    border-radius: 0.8rem;
+    padding: 2.4rem;
     box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 20rem;
+}
+
+.webinar-card h4 {
+    font-size: 1.8rem;
+    margin: 0 0 1.6rem 0;
+    color: #2c3e50;
+}
+
+.webinar-card p {
+    margin: 0.8rem 0;
+    color: #666;
+    font-size: 1.4rem;
+}
+
+.webinar-card-content {
+    flex-grow: 1;
+}
+
+.webinar-card-footer {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.webinar-card .btn {
+    width: auto;
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
 }
 
 /* Responsive */
@@ -264,4 +302,171 @@ h1, h2, h3, h4, h5, h6 {
 /* Contenido principal */
 .main-header {
     padding-top: 8rem; /* Añade padding superior para compensar la altura de la navbar */
+}
+
+/* Estilos para los botones de acción */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.6rem;
+    margin-top: 2rem;
+}
+
+.action-buttons .btn {
+    width: auto;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive para los botones de acción */
+@media (max-width: 76.8rem) { /* 768px */
+    .action-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 48rem) { /* 480px */
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos para mensajes de éxito y error */
+.success-message,
+.error-message {
+    padding: 1.2rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 0.1rem solid #c3e6cb;
+    box-shadow: 0 0 1rem rgba(0, 128, 0, 0.1);
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 0.1rem solid #f5c6cb;
+}
+
+/* Estilos para la página de detalles del webinar */
+.webinar-detail {
+    background-color: #ffffff;
+    border-radius: 0.8rem;
+    padding: 2.4rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.webinar-info {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.webinar-info h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.webinar-info p {
+    margin: 1rem 0;
+    font-size: 1.6rem;
+}
+
+.webinar-info strong {
+    color: #2c3e50;
+}
+
+.descripcion {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 0.4rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para el breadcrumb */
+.breadcrumb {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+}
+
+.breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: "›";
+    margin: 0 1rem;
+    color: #6c757d;
+}
+
+.breadcrumb a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .current {
+    color: #6c757d;
+}
+
+/* Estilos para el botón de regresar */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.back-button i {
+    font-size: 1.6rem;
+}
+
+.back-button:hover {
+    color: #2980b9;
+}
+
+/* Ajuste del contenedor para el breadcrumb y botón de regresar */
+.page-header {
+    margin-bottom: 2rem;
 }

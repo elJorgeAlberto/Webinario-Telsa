@@ -25,33 +25,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Manejo de la imagen
     $imagen = '';
     if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0){
-        $imagen_nombre = $_FILES['imagen']['name'];
+        // Crear el directorio si no existe
+        $upload_dir = __DIR__ . '/uploads';
+        if (!file_exists($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        // Generar un nombre único para el archivo
+        $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+        $imagen_nombre = uniqid() . '.' . $extension;
         $imagen_tmp = $_FILES['imagen']['tmp_name'];
-        $imagen_destino = __DIR__ . '/uploads/' . $imagen_nombre;
-        move_uploaded_file($imagen_tmp, $imagen_destino);
-        $imagen = '/uploads/' . $imagen_nombre;
+        $imagen_destino = $upload_dir . '/' . $imagen_nombre;
+
+        // Intentar mover el archivo
+        if (move_uploaded_file($imagen_tmp, $imagen_destino)) {
+            $imagen = '/uploads/' . $imagen_nombre;
+        } else {
+            $error = "Error al subir la imagen. Código de error: " . $_FILES['imagen']['error'];
+            // Opcional: Mostrar más información sobre el error
+            error_log("Error al subir imagen: " . error_get_last()['message']);
+        }
     }
 
-    $sql = "INSERT INTO webinarios (nombre, fecha, hora, link_sesion, cupos, descripcion, ponentes, duracion, categoria, imagen, creado_por) 
-            VALUES (:nombre, :fecha, :hora, :link_sesion, :cupos, :descripcion, :ponentes, :duracion, :categoria, :imagen, :creado_por)";
-    
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-    $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
-    $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
-    $stmt->bindParam(':link_sesion', $link_sesion, PDO::PARAM_STR);
-    $stmt->bindParam(':cupos', $cupos, PDO::PARAM_INT);
-    $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
-    $stmt->bindParam(':ponentes', $ponentes, PDO::PARAM_STR);
-    $stmt->bindParam(':duracion', $duracion, PDO::PARAM_STR);
-    $stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
-    $stmt->bindParam(':imagen', $imagen, PDO::PARAM_STR);
-    $stmt->bindParam(':creado_por', $_SESSION['id'], PDO::PARAM_INT);
+    // Solo continuar con la inserción si no hay errores
+    if (!isset($error)) {
+        $sql = "INSERT INTO webinarios (nombre, fecha, hora, link_sesion, cupos, descripcion, ponentes, duracion, categoria, imagen, creado_por) 
+                VALUES (:nombre, :fecha, :hora, :link_sesion, :cupos, :descripcion, :ponentes, :duracion, :categoria, :imagen, :creado_por)";
+        
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindParam(':hora', $hora, PDO::PARAM_STR);
+        $stmt->bindParam(':link_sesion', $link_sesion, PDO::PARAM_STR);
+        $stmt->bindParam(':cupos', $cupos, PDO::PARAM_INT);
+        $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(':ponentes', $ponentes, PDO::PARAM_STR);
+        $stmt->bindParam(':duracion', $duracion, PDO::PARAM_STR);
+        $stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+        $stmt->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+        $stmt->bindParam(':creado_por', $_SESSION['id'], PDO::PARAM_INT);
 
-    if ($stmt->execute()) {
-        $mensaje = "Webinario creado con éxito.";
-    } else {
-        $mensaje = "Error al crear el webinario.";
+        if ($stmt->execute()) {
+            $mensaje = "Webinario creado con éxito.";
+        } else {
+            $mensaje = "Error al crear el webinario.";
+        }
     }
 }
 
@@ -98,8 +116,8 @@ include __DIR__ . '/../views/header.php';
                 <input type="text" id="ponentes" name="ponentes" required>
             </div>
             <div class="form-group">
-                <label for="duracion">Duración:</label>
-                <input type="text" id="duracion" name="duracion" required>
+                <label for="duracion">Duración (en minutos):</label>
+                <input type="number" id="duracion" name="duracion" min="1" required>
             </div>
             <div class="form-group">
                 <label for="imagen">Imagen:</label>

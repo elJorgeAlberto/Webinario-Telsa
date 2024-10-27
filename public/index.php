@@ -79,10 +79,14 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
                         <div class="webinar-grid">
                             <?php foreach ($webinarios as $webinar): ?>
                                 <div class="webinar-card">
-                                    <h4><?php echo htmlspecialchars($webinar['nombre']); ?></h4>
-                                    <p>Fecha: <?php echo htmlspecialchars($webinar['fecha']); ?></p>
-                                    <p>Hora: <?php echo htmlspecialchars($webinar['hora']); ?></p>
-                                    <a href="webinar_detalle.php?id=<?php echo $webinar['id']; ?>" class="btn btn-secondary">Ver detalles</a>
+                                    <div class="webinar-card-content">
+                                        <h4><?php echo htmlspecialchars($webinar['nombre']); ?></h4>
+                                        <p>Fecha: <?php echo htmlspecialchars($webinar['fecha']); ?></p>
+                                        <p>Hora: <?php echo htmlspecialchars($webinar['hora']); ?></p>
+                                    </div>
+                                    <div class="webinar-card-footer">
+                                        <a href="webinar_detalle.php?id=<?php echo $webinar['id']; ?>" class="btn btn-secondary">Ver detalles</a>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
