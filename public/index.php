@@ -26,53 +26,70 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $total_webinarios = $result['total_webinarios'];
 
+    // Consulta para obtener los próximos webinarios
+    $sql = "SELECT * FROM webinarios WHERE fecha >= CURDATE() ORDER BY fecha ASC LIMIT 5";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    $webinarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     // Incluir el encabezado
     include BASE_PATH . '/views/header.php';
     ?>
 
     <main class="dashboard">
-        <section class="welcome-section">
-            <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-            <p>Estás en el panel de control de ReservasTelsa.</p>
-        </section>
+        <div class="container">
+            <section class="welcome-section">
+                <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+                <p>Estás en el panel de control de ReservasTelsa.</p>
+            </section>
 
-        <section class="quick-actions">
-            <h3>Acciones Rápidas</h3>
-            <div class="action-buttons">
-                <?php if(($_SESSION['rol'] ?? 'usuario') === 'admin'): ?>
-                    <a href="crear_webinar.php" class="btn btn-primary">Crear nuevo webinar</a>
+            <section class="quick-actions">
+                <h3>Acciones Rápidas</h3>
+                <div class="action-buttons">
+                    <?php if(($_SESSION['rol'] ?? 'usuario') === 'admin'): ?>
+                        <a href="crear_webinar.php" class="btn btn-primary">Crear nuevo webinar</a>
+                    <?php endif; ?>
+                    <a href="#" class="btn btn-secondary">Ver próximos webinars</a>
+                    <a href="#" class="btn btn-secondary">Mis reservas</a>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <h3>Estadísticas</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Webinars Disponibles</h4>
+                        <p class="stat-number"><?php echo $total_webinarios; ?></p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Mis Reservas</h4>
+                        <p class="stat-number">3</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Webinars Completados</h4>
+                        <p class="stat-number">5</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="webinars-section">
+                <h3>Próximos Webinars</h3>
+                <?php if (!empty($webinarios)): ?>
+                    <div class="webinar-grid">
+                        <?php foreach ($webinarios as $webinar): ?>
+                            <div class="webinar-card">
+                                <h4><?php echo htmlspecialchars($webinar['nombre']); ?></h4>
+                                <p>Fecha: <?php echo htmlspecialchars($webinar['fecha']); ?></p>
+                                <p>Hora: <?php echo htmlspecialchars($webinar['hora']); ?></p>
+                                <a href="webinar_detalle.php?id=<?php echo $webinar['id']; ?>" class="btn btn-secondary">Ver detalles</a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <p>No hay webinars próximos disponibles.</p>
                 <?php endif; ?>
-                <a href="#" class="btn btn-secondary">Ver próximos webinars</a>
-                <a href="#" class="btn btn-secondary">Mis reservas</a>
-            </div>
-        </section>
-
-        <section class="stats-section">
-            <h3>Estadísticas</h3>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h4>Webinars Disponibles</h4>
-                    <p class="stat-number"><?php echo $total_webinarios; ?></p>
-                </div>
-                <div class="stat-card">
-                    <h4>Mis Reservas</h4>
-                    <p class="stat-number">3</p>
-                </div>
-                <div class="stat-card">
-                    <h4>Webinars Completados</h4>
-                    <p class="stat-number">5</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="recent-webinars">
-            <h3>Webinars Recientes</h3>
-            <ul class="webinar-list">
-                <li>Introducción a PHP - 15/05/2023</li>
-                <li>Diseño Responsivo con CSS - 20/05/2023</li>
-                <li>JavaScript Avanzado - 25/05/2023</li>
-            </ul>
-        </section>
+            </section>
+        </div>
     </main>
 
     <?php

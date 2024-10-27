@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include __DIR__ . '/../views/header.php';
 ?>
 
-<div class="login-container">
-    <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<div class="container">
+    <div class="form-container">
         <h2>Iniciar Sesión</h2>
         <?php 
         if(isset($error)) { 
@@ -48,17 +48,19 @@ include __DIR__ . '/../views/header.php';
             unset($_SESSION['registro_exitoso']);
         }
         ?>
-        <div class="form-group">
-            <label for="username_or_email">Usuario o Correo Electrónico:</label>
-            <input type="text" id="username_or_email" name="username_or_email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit" class="login-button">Iniciar Sesión</button>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group">
+                <label for="username_or_email">Usuario o Correo Electrónico:</label>
+                <input type="text" id="username_or_email" name="username_or_email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
         <p class="register-link">¿No tienes una cuenta? <a href="registro.php">Regístrate aquí</a></p>
-    </form>
+    </div>
 </div>
 
 <?php include __DIR__ . '/../views/footer.php'; ?>

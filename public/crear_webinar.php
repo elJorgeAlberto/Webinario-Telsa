@@ -59,53 +59,55 @@ include __DIR__ . '/../views/header.php';
 ?>
 
 <div class="container">
-    <h2>Crear Nuevo Webinario</h2>
-    <?php if($mensaje): ?>
-        <p class="<?php echo strpos($mensaje, 'éxito') !== false ? 'success-message' : 'error-message'; ?>"><?php echo $mensaje; ?></p>
-    <?php endif; ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="nombre">Nombre del Webinario:</label>
-            <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="form-group">
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required>
-        </div>
-        <div class="form-group">
-            <label for="hora">Hora:</label>
-            <input type="time" id="hora" name="hora" required>
-        </div>
-        <div class="form-group">
-            <label for="link_sesion">Link de sesión:</label>
-            <input type="url" id="link_sesion" name="link_sesion" required>
-        </div>
-        <div class="form-group">
-            <label for="cupos">Cupos:</label>
-            <input type="number" id="cupos" name="cupos" required>
-        </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="ponentes">Ponentes:</label>
-            <input type="text" id="ponentes" name="ponentes" required>
-        </div>
-        <div class="form-group">
-            <label for="duracion">Duración:</label>
-            <input type="text" id="duracion" name="duracion" required>
-        </div>
-        <div class="form-group">
-            <label for="categoria">Categoría:</label>
-            <input type="text" id="categoria" name="categoria" required>
-        </div>
-        <div class="form-group">
-            <label for="imagen">Imagen:</label>
-            <input type="file" id="imagen" name="imagen" accept="image/*" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Crear Webinario</button>
-    </form>
+    <div class="form-container">
+        <h2>Crear Nuevo Webinario</h2>
+        <?php if($mensaje): ?>
+            <p class="<?php echo strpos($mensaje, 'éxito') !== false ? 'success-message' : 'error-message'; ?>"><?php echo $mensaje; ?></p>
+        <?php endif; ?>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre del Webinario:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <input type="text" id="categoria" name="categoria" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required>
+            </div>
+            <div class="form-group">
+                <label for="link_sesion">Link de sesión:</label>
+                <input type="url" id="link_sesion" name="link_sesion" required>
+            </div>
+            <div class="form-group">
+                <label for="cupos">Cupos:</label>
+                <input type="number" id="cupos" name="cupos" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ponentes">Ponentes:</label>
+                <input type="text" id="ponentes" name="ponentes" required>
+            </div>
+            <div class="form-group">
+                <label for="duracion">Duración:</label>
+                <input type="text" id="duracion" name="duracion" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Webinario</button>
+        </form>
+    </div>
 </div>
 
 <?php include __DIR__ . '/../views/footer.php'; ?>

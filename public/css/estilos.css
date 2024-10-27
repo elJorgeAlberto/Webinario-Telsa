@@ -1,23 +1,26 @@
+/* Estilos generales */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-}
-
-h1 {
+    background-color: #f8f9fa;
     color: #333;
 }
 
 .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: auto;
-    overflow: hidden;
-    padding-top: 80px; /* Ajustado para dar espacio a la barra de navegación fija */
+    padding: 20px;
 }
 
-/* Nuevos estilos para la barra de navegación */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+}
+
+/* Navbar */
 .navbar {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -41,13 +44,13 @@ h1 {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #333;
+    color: #2c3e50;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .logo-img {
-    height: 30px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -64,17 +67,17 @@ h1 {
 
 .navbar-menu a {
     text-decoration: none;
-    color: #333;
+    color: #2c3e50;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .navbar-menu a:hover {
-    color: #007bff;
+    color: #3498db;
 }
 
 .login-btn {
-    background-color: #007bff;
+    background-color: #3498db;
     color: #ffffff !important;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -82,17 +85,126 @@ h1 {
 }
 
 .login-btn:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
 }
 
-.navbar-toggle {
-    display: none;
-    font-size: 1.5rem;
+/* Formularios */
+.form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.25);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Estilos responsivos */
-@media screen and (max-width: 768px) {
+.btn-primary {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* Dashboard */
+.dashboard {
+    padding-top: 80px;
+}
+
+.welcome-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3498db;
+}
+
+/* Webinars */
+.webinar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.webinar-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
     .navbar-menu {
         display: none;
         flex-direction: column;
@@ -115,122 +227,8 @@ h1 {
     .navbar-toggle {
         display: block;
     }
-}
 
-/* Estilos para el formulario de login */
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 80px);
-    background-color: #f4f4f4;
-}
-
-.login-form {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-.login-form h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 0.65rem 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.login-button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: #dc3545;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.success-message {
-    color: #28a745;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.register-link {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.register-link a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
-}
-
-/* Añade esto al final del archivo */
-
-.webinars-section {
-    margin-top: 2rem;
-}
-
-.webinar-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.webinar-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.webinar-card h4 {
-    margin-top: 0;
-    color: #333;
-}
-
-.webinar-card p {
-    margin: 0.5rem 0;
-    color: #666;
-}
-
-.webinar-card .btn {
-    display: inline-block;
-    margin-top: 1rem;
+    .form-row {
+        flex-direction: column;
+    }
 }

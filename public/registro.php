@@ -47,32 +47,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include __DIR__ . '/../views/header.php';
 ?>
 
-<div class="login-container">
-    <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<div class="container">
+    <div class="form-container">
         <h2>Registro de Usuario</h2>
         <?php if(isset($error)) { echo "<p class='error-message'>$error</p>"; } ?>
-        <div class="form-group">
-            <label for="username">Usuario:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Confirmar Contraseña:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <button type="submit" class="login-button">Registrarse</button>
-    </form>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirmar Contraseña:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+        <p class="login-link">¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
+    </div>
 </div>
 
 <?php include __DIR__ . '/../views/footer.php'; ?>
