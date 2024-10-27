@@ -77,6 +77,22 @@ include __DIR__ . '/../views/header.php';
 ?>
 
 <div class="container">
+    <div class="page-header">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/index.php">Dashboard</a></li>
+                <li class="current">Crear Webinar</li>
+            </ul>
+        </nav>
+
+        <!-- Botón Regresar -->
+        <a href="javascript:history.back()" class="back-button">
+            <i class="fas fa-arrow-left"></i> Regresar
+        </a>
+    </div>
+
     <div class="form-container">
         <h2>Crear Nuevo Webinario</h2>
         <?php if($mensaje): ?>
@@ -123,7 +139,10 @@ include __DIR__ . '/../views/header.php';
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
             </div>
-            <button type="submit" class="btn btn-primary">Crear Webinario</button>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Crear Webinario</button>
+                <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+            </div>
         </form>
     </div>
 </div>

@@ -49,13 +49,43 @@ include __DIR__ . '/../views/header.php';
                         <?php endif; ?>
                         <div class="webinar-card-content">
                             <h4><?php echo htmlspecialchars($webinar['nombre']); ?></h4>
-                            <p><strong>Fecha:</strong> <?php echo htmlspecialchars($webinar['fecha']); ?></p>
-                            <p><strong>Hora:</strong> <?php echo htmlspecialchars($webinar['hora']); ?></p>
-                            <p><strong>Categoría:</strong> <?php echo htmlspecialchars($webinar['categoria']); ?></p>
-                            <p><strong>Cupos disponibles:</strong> <?php echo htmlspecialchars($webinar['cupos']); ?></p>
+                            <div class="webinar-info-grid">
+                                <div class="info-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span><?php echo date('d/m/Y', strtotime($webinar['fecha'])); ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span><?php echo date('H:i', strtotime($webinar['hora'])); ?> hrs</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-tag"></i>
+                                    <span><?php echo htmlspecialchars($webinar['categoria']); ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-users"></i>
+                                    <span><?php echo htmlspecialchars($webinar['cupos']); ?> cupos</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span><?php echo htmlspecialchars($webinar['ponentes']); ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-hourglass-half"></i>
+                                    <span><?php echo htmlspecialchars($webinar['duracion']); ?> minutos</span>
+                                </div>
+                            </div>
+                            <div class="webinar-description">
+                                <p><?php echo substr(htmlspecialchars($webinar['descripcion']), 0, 100); ?>...</p>
+                            </div>
                         </div>
                         <div class="webinar-card-footer">
                             <a href="webinar_detalle.php?id=<?php echo $webinar['id']; ?>" class="btn btn-primary">Ver detalles</a>
+                            <?php if($webinar['link_sesion']): ?>
+                                <a href="<?php echo htmlspecialchars($webinar['link_sesion']); ?>" class="btn btn-secondary" target="_blank">
+                                    <i class="fas fa-video"></i> Unirse
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
