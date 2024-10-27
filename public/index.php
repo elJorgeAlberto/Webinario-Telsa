@@ -50,8 +50,8 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
                         <?php if(($_SESSION['rol'] ?? 'usuario') === 'admin'): ?>
                             <a href="crear_webinar.php" class="btn btn-primary">Crear nuevo webinar</a>
                         <?php endif; ?>
-                        <a href="#" class="btn btn-secondary">Ver próximos webinars</a>
-                        <a href="#" class="btn btn-secondary">Mis reservas</a>
+                        <a href="mis_eventos.php" class="btn btn-secondary">Ver próximos webinars</a>
+                        <a href="mis_eventos.php" class="btn btn-secondary">Mis eventos</a>
                     </div>
                 </section>
 

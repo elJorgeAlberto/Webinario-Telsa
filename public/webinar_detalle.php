@@ -35,7 +35,34 @@ $webinar = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action'])) {
         if ($_POST['action'] == 'update' && ($_SESSION['rol'] ?? '') === 'admin') {
-            // Actualizar webinario
+            // Manejar la nueva imagen si se subió una
+            $imagen = $webinar['imagen']; // Mantener la imagen actual por defecto
+            if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0){
+                // Crear el directorio si no existe
+                $upload_dir = __DIR__ . '/uploads';
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+
+                // Generar un nombre único para el archivo
+                $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+                $imagen_nombre = uniqid() . '.' . $extension;
+                $imagen_tmp = $_FILES['imagen']['tmp_name'];
+                $imagen_destino = $upload_dir . '/' . $imagen_nombre;
+
+                // Intentar mover el archivo
+                if (move_uploaded_file($imagen_tmp, $imagen_destino)) {
+                    // Si hay una imagen anterior, la eliminamos
+                    if($webinar['imagen'] && file_exists(__DIR__ . $webinar['imagen'])) {
+                        unlink(__DIR__ . $webinar['imagen']);
+                    }
+                    $imagen = '/uploads/' . $imagen_nombre;
+                } else {
+                    $error = "Error al subir la nueva imagen.";
+                }
+            }
+
+            // Actualizar webinario incluyendo la imagen
             $sql = "UPDATE webinarios SET 
                     nombre = :nombre,
                     fecha = :fecha,
@@ -45,7 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     descripcion = :descripcion,
                     ponentes = :ponentes,
                     duracion = :duracion,
-                    categoria = :categoria
+                    categoria = :categoria,
+                    imagen = :imagen
                     WHERE id = :id";
             
             $stmt = $conexion->prepare($sql);
@@ -58,12 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':ponentes', $_POST['ponentes']);
             $stmt->bindParam(':duracion', $_POST['duracion']);
             $stmt->bindParam(':categoria', $_POST['categoria']);
+            $stmt->bindParam(':imagen', $imagen);
             $stmt->bindParam(':id', $webinar_id);
 
             if ($stmt->execute()) {
                 $mensaje = "Webinario actualizado con éxito.";
                 // Actualizar los datos mostrados
-                $webinar = array_merge($webinar, $_POST);
+                $webinar = array_merge($webinar, $_POST, ['imagen' => $imagen]);
             } else {
                 $mensaje = "Error al actualizar el webinario.";
             }

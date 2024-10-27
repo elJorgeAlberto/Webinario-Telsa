@@ -502,3 +502,69 @@ h1, h2, h3, h4, h5, h6 {
 .form-container {
     max-width: 60rem;
 }
+
+/* Estilos para la página de reservas */
+.reservas-container {
+    padding: 2rem 0;
+}
+
+.reservas-container h2 {
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.webinar-card-image {
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.webinar-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.webinar-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.webinar-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.4rem 1rem rgba(0,0,0,0.2);
+}
+
+.webinar-card-content {
+    padding: 1.6rem;
+    flex-grow: 1;
+}
+
+.webinar-card-content h4 {
+    color: #2c3e50;
+    margin-bottom: 1.2rem;
+    font-size: 1.8rem;
+}
+
+.webinar-card-content p {
+    margin: 0.8rem 0;
+    color: #666;
+}
+
+.webinar-card-footer {
+    padding: 1.6rem;
+    border-top: 0.1rem solid #eee;
+    text-align: right;
+}
+
+.no-webinars {
+    text-align: center;
+    color: #666;
+    font-size: 1.6rem;
+    padding: 3rem;
+    background: #f8f9fa;
+    border-radius: 0.8rem;
+}
