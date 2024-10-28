@@ -1,3 +1,73 @@
+/* Variables de colores */
+:root {
+    --color-primary: #1403FF;    /* Color principal */
+    --color-primary-hover: #1102cc; /* Versión más oscura para hover */
+    --color-secondary: #423AAA;  /* Color secundario */
+    --color-secondary-hover: #352e88; /* Versión más oscura para hover */
+    --color-tertiary: #1F3650;   /* Color terciario */
+    --color-tertiary-hover: #182940; /* Versión más oscura para hover */
+}
+
+/* Estilos de botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.2rem 2.4rem;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    color: #ffffff; /* Asegurar que el texto sea blanco */
+}
+
+.btn-primary,
+.login-btn {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.login-btn:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-secondary-hover);
+    color: #ffffff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    color: #ffffff;
+}
+
+/* Asegurar que los botones en las cards tengan el color correcto */
+.webinar-card-footer .btn {
+    color: #ffffff;
+}
+
+/* Asegurar que los botones en el grupo de botones tengan el color correcto */
+.button-group .btn {
+    color: #ffffff;
+}
+
 /* Estilos generales */
 html {
     font-size: 62.5%; /* Esto hace que 1rem = 10px */
@@ -5,7 +75,7 @@ html {
 
 body {
     font-size: 1.6rem; /* Esto equivale a 16px */
-    font-family: 'Roboto', sans-serif;
+    font-family: Tahoma, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -21,7 +91,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: Tahoma, sans-serif;
     color: #2c3e50;
 }
 
@@ -79,11 +149,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-menu a:hover {
-    color: #3498db;
+    color: var(--color-primary);
 }
 
 .login-btn {
-    background-color: #3498db;
+    background-color: var(--color-primary);
     color: #ffffff !important;
     padding: 0.8rem 1.6rem;
     border-radius: 0.5rem; /* 5px */
@@ -91,13 +161,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login-btn:hover {
-    background-color: #2980b9;
+    background-color: var(--color-primary-hover);
 }
 
 .navbar-toggle {
     display: none;
     font-size: 2.4rem;
     cursor: pointer;
+    padding: 0.8rem;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+.navbar-toggle:hover {
+    color: var(--color-primary-hover);
 }
 
 /* Formularios */
@@ -136,9 +213,9 @@ h1, h2, h3, h4, h5, h6 {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: #3498db;
+    border-color: var(--color-primary);
     outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(20, 3, 255, 0.25);
 }
 
 /* Ajustes para inputs específicos */
@@ -179,19 +256,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary,
 .login-btn {
-    background-color: #3498db;
+    background-color: var(--color-primary);
     color: #ffffff;
 }
 
 .btn-secondary {
-    background-color: rgba(52, 152, 219, 0.8); /* Un poco más claro */
+    background-color: var(--color-secondary);
     color: #ffffff;
 }
 
 .btn-primary:hover,
 .btn-secondary:hover,
 .login-btn:hover {
-    background-color: #2980b9;
+    background-color: var(--color-primary-hover);
 }
 
 /* Dashboard */
@@ -224,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 .stat-number {
     font-size: 3.2rem;
     font-weight: bold;
-    color: #3498db;
+    color: var(--color-primary);
 }
 
 /* Webinars */
@@ -506,12 +583,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .breadcrumb a {
-    color: #3498db;
+    color: var(--color-primary);
     text-decoration: none;
 }
 
 .breadcrumb a:hover {
     text-decoration: underline;
+    color: var(--color-primary-hover);
 }
 
 .breadcrumb .current {
@@ -524,7 +602,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: 0.8rem;
     margin-bottom: 2rem;
-    color: #3498db;
+    color: var(--color-primary);
     text-decoration: none;
     font-size: 1.4rem;
 }
@@ -534,7 +612,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-button:hover {
-    color: #2980b9;
+    color: var(--color-primary-hover);
 }
 
 /* Ajuste del contenedor para el breadcrumb y botón de regresar */
@@ -669,7 +747,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .info-item i {
-    color: #3498db;
+    color: var(--color-primary);
     width: 1.6rem;
     text-align: center;
 }
@@ -717,7 +795,7 @@ h1, h2, h3, h4, h5, h6 {
 .welcome-section {
     text-align: center;
     padding: 4rem 2rem;
-    background: linear-gradient(to right, #3498db, #2980b9);
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
     color: #ffffff;
     border-radius: 0.8rem;
     margin-bottom: 4rem;
@@ -1030,3 +1108,337 @@ h1, h2, h3, h4, h5, h6 {
         margin: 0;
     }
 }
+
+.status-message {
+    margin: 1rem 0 2rem 0;
+    font-size: 1.6rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Estilos mejorados para status-message */
+.status-message {
+    background-color: #f8f9fa;
+    padding: 1.2rem 2rem;
+    border-radius: 0.4rem;
+    margin: 1.6rem 0 2.4rem 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.05);
+    border-left: 0.4rem solid #6c757d;
+}
+
+.status-message .status-pendiente {
+    color: #ffc107;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.status-message .status-confirmado {
+    color: #28a745;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.status-message .status-cancelado {
+    color: #dc3545;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* Colores de borde según estado */
+.status-message.status-pendiente {
+    border-left-color: #ffc107;
+}
+
+.status-message.status-confirmado {
+    border-left-color: #28a745;
+}
+
+.status-message.status-cancelado {
+    border-left-color: #dc3545;
+}
+
+/* Ajustes responsivos para status-message */
+@media (max-width: 768px) {
+    .status-message {
+        padding: 1rem 1.6rem;
+        margin: 1.2rem 0 2rem 0;
+    }
+}
+
+/* Navbar Móvil y Tablet */
+.navbar-toggle {
+    display: none;
+    font-size: 2.4rem;
+    cursor: pointer;
+    padding: 0.8rem;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+.navbar-toggle:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Media queries para tablets y móviles */
+@media (max-width: 1229px) { /* Nuevo breakpoint */
+    .navbar {
+        height: auto;
+        min-height: 6rem;
+    }
+
+    .navbar-container {
+        padding: 1rem;
+    }
+
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 0.4rem 0.8rem rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        z-index: 1000;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: slideDown 0.3s ease;
+    }
+
+    .navbar-menu li {
+        margin: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-menu a {
+        display: block;
+        padding: 1rem 2rem;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar-menu a:hover {
+        background-color: #f8f9fa;
+    }
+
+    .navbar-menu .login-btn {
+        margin: 1rem 2rem;
+        width: calc(100% - 4rem);
+        text-align: center;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-logo {
+        font-size: 2rem;
+    }
+
+    .logo-img {
+        height: 3.2rem;
+    }
+}
+
+/* Mantener los otros breakpoints para ajustes más específicos */
+@media (max-width: 768px) { /* Móviles */
+    .navbar-container {
+        padding: 0.8rem;
+    }
+
+    .navbar-logo {
+        font-size: 1.8rem;
+    }
+
+    .logo-img {
+        height: 2.8rem;
+    }
+
+    .navbar-menu a {
+        padding: 0.8rem 1.6rem;
+    }
+}
+
+/* Animación para el menú */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Footer Styles */
+.main-footer {
+    background-color: #1f3650;
+    color: #ffffff;
+    padding: 4rem 0 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+
+/* Logo y descripción */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-logo {
+    max-width: 15rem;
+    height: auto;
+}
+
+.footer-description {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Enlaces del footer */
+.footer-links h4,
+.footer-contact h4,
+.footer-social h4 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.footer-links ul,
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: 1.2rem;
+}
+
+.footer-links a,
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.4rem;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: var(--color-primary);
+}
+
+/* Información de contacto */
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-contact i {
+    color: #ffffff; /* Cambiado a blanco */
+    font-size: 1.6rem;
+    width: 2rem;
+    text-align: center;
+    opacity: 0.9; /* Para un efecto sutil */
+}
+
+.footer-contact a:hover i {
+    opacity: 1; /* Al hacer hover se vuelve completamente opaco */
+}
+
+/* Redes sociales */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-0.3rem);
+}
+
+.social-link i {
+    font-size: 1.8rem;
+}
+
+/* Barra de copyright */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-contact li {
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+

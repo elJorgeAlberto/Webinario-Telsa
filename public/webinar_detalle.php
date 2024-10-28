@@ -264,6 +264,13 @@ include __DIR__ . '/../views/header.php';
                 <?php endif; ?>
 
                 <h2><?php echo htmlspecialchars($webinar['nombre']); ?></h2>
+                
+                <?php if($inscrito && $estado_inscripcion): ?>
+                    <p class="status-message">Estado: <span class="status-<?php echo htmlspecialchars($estado_inscripcion); ?>">
+                        <?php echo ucfirst(htmlspecialchars($estado_inscripcion)); ?></span>
+                    </p>
+                <?php endif; ?>
+
                 <p><strong>Categoría:</strong> <?php echo htmlspecialchars($webinar['categoria']); ?></p>
                 <p><strong>Fecha:</strong> <?php echo date('d/m/Y', strtotime($webinar['fecha'])); ?></p>
                 <p><strong>Hora:</strong> <?php echo date('H:i', strtotime($webinar['hora'])); ?> hrs</p>
@@ -293,11 +300,6 @@ include __DIR__ . '/../views/header.php';
                             <p class="info-message">Tu inscripción está pendiente de confirmación</p>
                         <?php elseif($estado_inscripcion === 'cancelado'): ?>
                             <p class="error-message">Tu inscripción ha sido cancelada</p>
-                        <?php endif; ?>
-                        <?php if($estado_inscripcion): ?>
-                            <p class="status-message">Estado: <span class="status-<?php echo htmlspecialchars($estado_inscripcion); ?>">
-                                <?php echo ucfirst(htmlspecialchars($estado_inscripcion)); ?></span>
-                            </p>
                         <?php endif; ?>
                     <?php else: ?>
                         <p class="error-message">No hay cupos disponibles</p>

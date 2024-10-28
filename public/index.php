@@ -200,7 +200,7 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
             <!-- Contenido para usuarios no autenticados -->
             <div class="container">
                 <section class="welcome-section">
-                    <h2>Bienvenido a ReservasTelsa</h2>
+                    <h2>Bienvenido a </h2>
                     <p>Descubre nuestros próximos webinarios y únete a la comunidad.</p>
                     <div class="cta-buttons">
                         <a href="login.php" class="btn btn-primary">Iniciar Sesión</a>
