@@ -286,6 +286,9 @@ include __DIR__ . '/../views/header.php';
                             <a href="<?php echo htmlspecialchars($webinar['link_sesion']); ?>" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-video"></i> Unirse al Webinar
                             </a>
+                            <a href="generar_ics.php?id=<?php echo $webinar['id']; ?>" class="btn btn-secondary">
+                                <i class="fas fa-calendar-plus"></i> Agregar a mi agenda
+                            </a>
                         <?php elseif($estado_inscripcion === 'pendiente'): ?>
                             <p class="info-message">Tu inscripción está pendiente de confirmación</p>
                         <?php elseif($estado_inscripcion === 'cancelado'): ?>

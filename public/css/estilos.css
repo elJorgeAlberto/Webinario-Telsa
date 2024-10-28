@@ -1012,3 +1012,21 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Estilos para el botón de agenda */
+.btn i.fa-calendar-plus {
+    margin-right: 1rem;
+    font-size: 1.6rem;
+}
+
+/* Ajustes responsivos para los botones */
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .button-group .btn {
+        width: 100%;
+        margin: 0;
+    }
+}
