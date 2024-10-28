@@ -31,13 +31,15 @@ if ($stmt->rowCount() == 0) {
 
 $webinar = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Verificar si el usuario ya está inscrito
+// Verificar si el usuario ya está inscrito y su estado
 $sql = "SELECT * FROM inscripciones WHERE webinar_id = :webinar_id AND usuario_id = :usuario_id";
 $stmt = $conexion->prepare($sql);
 $stmt->bindParam(':webinar_id', $webinar_id);
 $stmt->bindParam(':usuario_id', $_SESSION['id']);
 $stmt->execute();
+$inscripcion = $stmt->fetch(PDO::FETCH_ASSOC);
 $inscrito = $stmt->rowCount() > 0;
+$estado_inscripcion = $inscrito ? $inscripcion['estado'] : null;
 
 // Procesar la actualización del webinario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -122,8 +124,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Procesar la inscripción
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'inscribirse') {
-    // Verificar si hay cupos disponibles
-    if ($webinar['cupos'] > 0) {
+    // Verificar cupos disponibles con una consulta actualizada
+    $sql = "SELECT cupos FROM webinarios WHERE id = :id";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':id', $webinar_id);
+    $stmt->execute();
+    $cupos_actuales = $stmt->fetch(PDO::FETCH_ASSOC)['cupos'];
+
+    if ($cupos_actuales > 0) {
         try {
             $conexion->beginTransaction();
 
@@ -134,22 +142,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
             $stmt->bindParam(':usuario_id', $_SESSION['id']);
             $stmt->execute();
 
-            // Actualizar cupos disponibles
+            // Actualizar cupos disponibles con una condición adicional de seguridad
             $sql = "UPDATE webinarios SET cupos = cupos - 1 WHERE id = :id AND cupos > 0";
             $stmt = $conexion->prepare($sql);
             $stmt->bindParam(':id', $webinar_id);
-            $stmt->execute();
+            $result = $stmt->execute();
 
-            $conexion->commit();
-            $mensaje = "Te has inscrito exitosamente al webinar.";
-            $inscrito = true;
-            
-            // Actualizar los cupos mostrados
-            $webinar['cupos']--;
+            // Verificar si se actualizaron los cupos
+            if ($stmt->rowCount() > 0) {
+                $conexion->commit();
+                $mensaje = "Te has inscrito exitosamente al webinar.";
+                $inscrito = true;
+                // Actualizar los cupos mostrados
+                $webinar['cupos']--;
+            } else {
+                $conexion->rollBack();
+                $mensaje = "Lo sentimos, no hay cupos disponibles.";
+            }
             
         } catch (Exception $e) {
             $conexion->rollBack();
             $mensaje = "Error al procesar la inscripción.";
+            error_log("Error en inscripción: " . $e->getMessage());
         }
     } else {
         $mensaje = "Lo sentimos, no hay cupos disponibles.";
@@ -268,12 +282,20 @@ include __DIR__ . '/../views/header.php';
                             <button type="submit" class="btn btn-primary">Inscribirse al Webinar</button>
                         </form>
                     <?php elseif($inscrito): ?>
-                        <?php if($webinar['link_sesion']): ?>
+                        <?php if($estado_inscripcion === 'confirmado' && $webinar['link_sesion']): ?>
                             <a href="<?php echo htmlspecialchars($webinar['link_sesion']); ?>" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-video"></i> Unirse al Webinar
                             </a>
+                        <?php elseif($estado_inscripcion === 'pendiente'): ?>
+                            <p class="info-message">Tu inscripción está pendiente de confirmación</p>
+                        <?php elseif($estado_inscripcion === 'cancelado'): ?>
+                            <p class="error-message">Tu inscripción ha sido cancelada</p>
                         <?php endif; ?>
-                        <p class="success-message">Ya estás inscrito en este webinar</p>
+                        <?php if($estado_inscripcion): ?>
+                            <p class="status-message">Estado: <span class="status-<?php echo htmlspecialchars($estado_inscripcion); ?>">
+                                <?php echo ucfirst(htmlspecialchars($estado_inscripcion)); ?></span>
+                            </p>
+                        <?php endif; ?>
                     <?php else: ?>
                         <p class="error-message">No hay cupos disponibles</p>
                     <?php endif; ?>

@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS inscripciones (
     usuario_id INT NOT NULL,
     fecha_inscripcion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     estado ENUM('pendiente', 'confirmado', 'cancelado') DEFAULT 'pendiente',
+    asistencia BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (webinar_id) REFERENCES webinarios(id),
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
     UNIQUE KEY unique_inscripcion (webinar_id, usuario_id)
