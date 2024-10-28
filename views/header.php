@@ -30,6 +30,8 @@
             </div>
         </div>
     </nav>
+    <!-- Agregar el overlay -->
+    <div class="menu-overlay"></div>
     <div class="container">
         <header class="main-header">
             <h1>Eventos y Webinarios Telsa</h1>

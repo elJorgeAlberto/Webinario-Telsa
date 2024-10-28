@@ -1,3 +1,291 @@
+/* ==========================================================================
+   Variables Globales
+   ========================================================================== */
+:root {
+    --color-primary: #1403FF;    /* Color principal */
+    --color-primary-hover: #1102cc; /* Versión más oscura para hover */
+    --color-secondary: #423AAA;  /* Color secundario */
+    --color-secondary-hover: #352e88; /* Versión más oscura para hover */
+    --color-tertiary: #1F3650;   /* Color terciario */
+    --color-tertiary-hover: #182940; /* Versión más oscura para hover */
+}
+
+/* ==========================================================================
+   Estilos Base
+   ========================================================================== */
+html {
+    font-size: 62.5%; /* Esto hace que 1rem = 10px */
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: Tahoma, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 120rem;
+    margin: auto;
+    padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Tahoma, sans-serif;
+    color: #2c3e50;
+}
+
+/* ==========================================================================
+   Navegación
+   ========================================================================== */
+/* Navbar Principal */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 6rem;
+}
+
+/* Contenedor del Navbar */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 3.2rem;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+/* Logo y Enlaces */
+.navbar-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+
+.logo-img {
+    height: 4rem;
+    margin-right: 1rem;
+}
+
+/* Menú de Navegación */
+.navbar-menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li {
+    margin-left: 2.4rem;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   Botones
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.2rem 2.4rem;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+.btn-primary,
+.login-btn {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Formularios
+   ========================================================================== */
+.form-container {
+    background-color: #ffffff;
+    border-radius: 0.8rem;
+    padding: 3.2rem;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+    max-width: 50rem;
+    margin: 3.2rem auto;
+}
+
+.form-group {
+    margin-bottom: 2.4rem;
+}
+
+/* ==========================================================================
+   Dashboard y Estadísticas
+   ========================================================================== */
+.dashboard {
+    padding-top: .75rem;
+}
+
+.stats-section {
+    margin: 3rem 0;
+    background: #ffffff;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   Cards de Webinarios
+   ========================================================================== */
+.webinar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0 4rem 0;
+}
+
+.webinar-card {
+    background-color: #ffffff;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.main-footer {
+    background-color: #1f3650;
+    color: #ffffff;
+    padding: 4rem 0 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+
+/* ==========================================================================
+   Gráficas y Dashboard Admin
+   ========================================================================== */
+.graficas-section {
+    margin: 3rem 0;
+}
+
+.graficas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* ==========================================================================
+   Mensajes y Alertas
+   ========================================================================== */
+.success-message,
+.error-message {
+    padding: 1.2rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* Tablets y dispositivos medianos */
+@media (max-width: 1024px) {
+    /* ... estilos para tablets ... */
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    /* ... estilos para móviles ... */
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    /* ... estilos para móviles pequeños ... */
+}
+
+/* ==========================================================================
+   Animaciones
+   ========================================================================== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ... (resto de los estilos organizados en sus respectivas secciones) ... */
+
+/* Móviles */
+@media (max-width: 768px) {
+    /* ... estilos para móviles ... */
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    /* ... estilos para móviles pequeños ... */
+}
+
+/* ==========================================================================
+   Animaciones
+   ========================================================================== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ... (resto de los estilos organizados en sus respectivas secciones) ... */
+
 /* Variables de colores */
 :root {
     --color-primary: #1403FF;    /* Color principal */
@@ -766,19 +1054,39 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.8rem;
     color: #666;
     font-size: 1.4rem;
+    min-width: 0; /* Permite que el contenido se ajuste */
+    overflow: hidden; /* Evita desbordamiento */
 }
 
 .info-item i {
-    color: var(--color-primary);
-    width: 1.6rem;
+    flex-shrink: 0; /* Evita que el icono se encoja */
+    width: 1.6rem; /* Ancho fijo para el icono */
     text-align: center;
 }
 
-.webinar-description {
-    margin: 1.6rem 0;
-    color: #666;
-    font-size: 1.4rem;
+.info-item span {
+    white-space: nowrap; /* Evita saltos de línea */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Muestra ... si el texto es muy largo */
+}
+
+/* La descripción sigue ocupando todo el ancho */
+.info-item.webinar-description {
+    grid-column: 1 / -1;
+    display: block;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.info-item.webinar-description span {
+    display: block;
+    width: 100%;
+    white-space: normal; /* Permite que el texto de descripción se envuelva */
+    margin-top: 0.5rem;
     line-height: 1.6;
+    color: #666;
 }
 
 /* Ajustes responsivos */
@@ -888,16 +1196,25 @@ h1, h2, h3, h4, h5, h6 {
 .status-pendiente {
     color: #ffc107;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .status-confirmado {
     color: #28a745;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .status-cancelado {
     color: #dc3545;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .info-message {
@@ -1199,21 +1516,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Navbar Móvil y Tablet */
-.navbar-toggle {
-    display: none;
-    font-size: 2.4rem;
-    cursor: pointer;
-    padding: 0.8rem;
-    color: var(--color-primary);
-    transition: color 0.3s ease;
-}
-
-.navbar-toggle:hover {
-    color: var(--color-primary-hover);
-}
-
-/* Media queries para tablets y móviles */
-@media (max-width: 1229px) { /* Nuevo breakpoint */
+@media (max-width: 1229px) {
     .navbar {
         height: auto;
         min-height: 6rem;
@@ -1225,57 +1528,102 @@ h1, h2, h3, h4, h5, h6 {
 
     .navbar-menu {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        position: fixed;
+        top: 0;
+        right: -30rem; /* Inicialmente fuera de la pantalla */
+        width: 30rem; /* Ancho fijo del menú */
+        height: 100vh;
         background-color: #ffffff;
-        box-shadow: 0 0.4rem 0.8rem rgba(0,0,0,0.1);
-        padding: 1rem 0;
-        z-index: 1000;
+        box-shadow: -0.2rem 0 1rem rgba(0,0,0,0.1);
+        padding: 8rem 2rem 2rem;
+        z-index: 999;
+        transition: right 0.3s ease;
+        overflow-y: auto;
     }
 
     .navbar-menu.active {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        animation: slideDown 0.3s ease;
+        right: 0; /* Se desliza hacia adentro */
+        animation: slideIn 0.3s ease;
     }
 
     .navbar-menu li {
         margin: 1rem 0;
         width: 100%;
-        text-align: center;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .navbar-menu li:last-child {
+        border-bottom: none;
     }
 
     .navbar-menu a {
         display: block;
-        padding: 1rem 2rem;
+        padding: 1.2rem;
         width: 100%;
         box-sizing: border-box;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
+        color: #333;
+        font-size: 1.6rem;
     }
 
     .navbar-menu a:hover {
         background-color: #f8f9fa;
+        padding-left: 1.8rem;
+        color: var(--color-primary);
     }
 
     .navbar-menu .login-btn {
-        margin: 1rem 2rem;
-        width: calc(100% - 4rem);
+        margin: 1rem 0;
+        width: 100%;
         text-align: center;
     }
 
     .navbar-toggle {
         display: block;
+        position: fixed;
+        right: 2rem;
+        top: 1.5rem;
+        z-index: 1000;
+        font-size: 2.4rem;
+        color: var(--color-primary);
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    .navbar-logo {
-        font-size: 2rem;
+    /* Overlay para cuando el menú está abierto */
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
-    .logo-img {
-        height: 3.2rem;
+    .menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/* Animación para el menú lateral */
+@keyframes slideIn {
+    from {
+        right: -30rem;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
     }
 }
 
@@ -1961,4 +2309,28 @@ h1, h2, h3, h4, h5, h6 {
     .stat-number {
         font-size: 3.6rem;
     }
+}
+
+/* Ajustes para la descripción del webinar */
+.info-item.webinar-description {
+    grid-column: 1 / -1;
+    display: block; /* Cambiado de flex a block */
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.info-item.webinar-description i {
+    display: inline-block;
+    margin-right: 0.8rem;
+    color: var(--color-primary);
+}
+
+.info-item.webinar-description span {
+    display: block; /* Cambiado para ocupar todo el ancho */
+    width: 100%;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    color: #666;
 }

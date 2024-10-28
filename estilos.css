@@ -1,0 +1,111 @@
+/* Navbar Móvil y Tablet */
+@media (max-width: 1229px) {
+    .navbar {
+        height: auto;
+        min-height: 6rem;
+    }
+
+    .navbar-container {
+        padding: 1rem;
+    }
+
+    .navbar-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -30rem; /* Inicialmente fuera de la pantalla */
+        width: 30rem; /* Ancho fijo del menú */
+        height: 100vh;
+        background-color: #ffffff;
+        box-shadow: -0.2rem 0 1rem rgba(0,0,0,0.1);
+        padding: 8rem 2rem 2rem;
+        z-index: 999;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+        flex-direction: column;
+        right: 0; /* Se desliza hacia adentro */
+        animation: slideIn 0.3s ease;
+    }
+
+    .navbar-menu li {
+        margin: 1rem 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .navbar-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .navbar-menu a {
+        display: block;
+        padding: 1.2rem;
+        width: 100%;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+        color: #333;
+        font-size: 1.6rem;
+    }
+
+    .navbar-menu a:hover {
+        background-color: #f8f9fa;
+        padding-left: 1.8rem;
+        color: var(--color-primary);
+    }
+
+    .navbar-menu .login-btn {
+        margin: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-toggle {
+        display: block;
+        position: fixed;
+        right: 2rem;
+        top: 1.5rem;
+        z-index: 1000;
+        font-size: 2.4rem;
+        color: var(--color-primary);
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Overlay para cuando el menú está abierto */
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/* Animación para el menú lateral */
+@keyframes slideIn {
+    from {
+        right: -30rem;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
+    }
+}
