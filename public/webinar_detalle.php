@@ -152,21 +152,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
             if ($stmt->rowCount() > 0) {
                 $conexion->commit();
                 $mensaje = "Te has inscrito exitosamente al webinar.";
+                $tipo_mensaje = "success"; // Añadimos esta variable para controlar el tipo de mensaje
                 $inscrito = true;
                 // Actualizar los cupos mostrados
                 $webinar['cupos']--;
             } else {
                 $conexion->rollBack();
                 $mensaje = "Lo sentimos, no hay cupos disponibles.";
+                $tipo_mensaje = "error";
             }
             
         } catch (Exception $e) {
             $conexion->rollBack();
             $mensaje = "Error al procesar la inscripción.";
+            $tipo_mensaje = "error";
             error_log("Error en inscripción: " . $e->getMessage());
         }
     } else {
         $mensaje = "Lo sentimos, no hay cupos disponibles.";
+        $tipo_mensaje = "error";
     }
 }
 
@@ -192,7 +196,9 @@ include __DIR__ . '/../views/header.php';
 
     <div class="webinar-detail">
         <?php if($mensaje): ?>
-            <p class="<?php echo strpos($mensaje, 'éxito') !== false ? 'success-message' : 'error-message'; ?>"><?php echo $mensaje; ?></p>
+            <p class="<?php echo $tipo_mensaje === 'success' ? 'success-message' : 'error-message'; ?>">
+                <?php echo $mensaje; ?>
+            </p>
         <?php endif; ?>
 
         <?php if(($_SESSION['rol'] ?? '') === 'admin'): ?>

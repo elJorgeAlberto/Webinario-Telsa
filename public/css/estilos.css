@@ -273,12 +273,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dashboard */
 .dashboard {
-    padding-top: 8rem; /* 80px */
+    padding-top: .75rem; /* 80px */
 }
 
 .welcome-section {
     background-color: #ffffff;
-    border-radius: 0.8rem; /* 8px */
+    border-radius: 0.8rem;
     padding: 3.2rem;
     margin-bottom: 3.2rem;
     box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
@@ -292,16 +292,38 @@ h1, h2, h3, h4, h5, h6 {
 
 .stat-card {
     background-color: #ffffff;
-    border-radius: 0.8rem; /* 8px */
+    border-radius: 0.8rem;
     padding: 2.4rem;
     text-align: center;
     box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
 }
 
+.stat-card h4 {
+    color: #2c3e50;
+    margin-bottom: 1.6rem;
+    font-size: 1.8rem;
+}
+
 .stat-number {
-    font-size: 3.2rem;
+    font-size: 4.8rem; /* Aumentado de 3.2rem a 4.8rem */
     font-weight: bold;
     color: var(--color-primary);
+    line-height: 1.2;
+    margin: 1rem 0;
+}
+
+.stat-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.6rem; /* Aumentado de 1.4rem a 1.6rem */
 }
 
 /* Webinars */
@@ -1442,3 +1464,339 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Estilo para el contador de inscritos */
+.inscritos-count {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.info-item i.fa-user-check {
+    color: var(--color-primary);
+}
+
+/* Estilos para el Dashboard Administrativo */
+.admin-dashboard {
+    padding: 2rem 0;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+}
+
+.card-header {
+    margin-bottom: 2rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: var(--color-primary);
+}
+
+.card-header .date {
+    color: #666;
+    font-size: 1.4rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 0.4rem;
+}
+
+.stat-item .label {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.stat-item .value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.value.confirmados { color: #28a745; }
+.value.pendientes { color: #ffc107; }
+.value.cancelados { color: #dc3545; }
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan */
+}
+
+.card-actions .btn {
+    flex: 1;
+    min-width: 0; /* Permite que los botones se encojan más allá de su contenido */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1rem;
+    font-size: 1.4rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Ajustes responsivos para los botones */
+@media (max-width: 768px) {
+    .card-actions {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .card-actions .btn {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .dashboard-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .card-actions {
+        padding: 0.8rem;
+    }
+
+    .card-actions .btn {
+        font-size: 1.3rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Tabla de participantes */
+.table-container {
+    overflow-x: auto;
+    margin-top: 2rem;
+}
+
+.participantes-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 0.8rem;
+    overflow: hidden;
+}
+
+.participantes-table th,
+.participantes-table td {
+    padding: 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.participantes-table th {
+    background: var(--color-primary);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.status-badge.status-confirmado { 
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-pendiente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.status-cancelado {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.asistencia-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.asistencia-badge.asistio {
+    background: #d4edda;
+    color: #155724;
+}
+
+.asistencia-badge.no-asistio {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 0.4rem;
+    transition: color 0.3s ease;
+}
+
+.btn-icon:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .participantes-table {
+        font-size: 1.2rem;
+    }
+}
+
+/* Estilos para la sección de gráficas */
+.graficas-section {
+    margin: 3rem 0;
+}
+
+.btn-toggle-graficas {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-toggle-graficas:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-toggle-graficas i {
+    font-size: 1.8rem;
+}
+
+.graficas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.grafica-card {
+    background: #ffffff;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+}
+
+.grafica-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Animación para mostrar/ocultar gráficas */
+#graficas-container {
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .graficas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grafica-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    width: 80%;
+    max-width: 50rem;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 0.4rem;
+    transition: color 0.3s ease;
+}
+
+.btn-icon:hover {
+    color: var(--color-primary-hover);
+}
