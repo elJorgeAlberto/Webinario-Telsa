@@ -25,11 +25,11 @@
             <ul>
                 <li>
                     <i class="fas fa-phone"></i>
-                    <a href="tel:+528183113000">+52 (81) 8311-3000</a>
+                    <a href="tel:+525557404630">+52 (55)5740 4630</a>
                 </li>
                 <li>
                     <i class="fas fa-envelope"></i>
-                    <a href="mailto:contacto@telsa.com.mx">contacto@telsa.com.mx</a>
+                    <a href="mailto:ventas@telsa.com.mx">ventas@telsa.com.mx</a>
                 </li>
                 <li>
                     <i class="fas fa-map-marker-alt"></i>

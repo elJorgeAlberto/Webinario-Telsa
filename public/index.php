@@ -188,6 +188,25 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
                                                         </span>
                                                     </div>
                                                 <?php endif; ?>
+                                                
+                                                <?php if(($_SESSION['rol'] ?? '') === 'usuario'): ?>
+                                                    <div class="info-item">
+                                                        <i class="fas fa-tag"></i>
+                                                        <span><?php echo htmlspecialchars($webinar['categoria']); ?></span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <i class="fas fa-user-tie"></i>
+                                                        <span><?php echo htmlspecialchars($webinar['ponentes']); ?></span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <i class="fas fa-hourglass-half"></i>
+                                                        <span><?php echo htmlspecialchars($webinar['duracion']); ?> minutos</span>
+                                                    </div>
+                                                    <div class="info-item webinar-description">
+                                                        <i class="fas fa-info-circle"></i>
+                                                        <span><?php echo substr(htmlspecialchars($webinar['descripcion']), 0, 100); ?>...</span>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <div class="webinar-card-footer">
