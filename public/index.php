@@ -223,7 +223,11 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
                                 <?php endforeach; ?>
                             </div>
                         <?php else: ?>
-                            <p class="no-webinars">No hay webinarios próximos disponibles.</p>
+                            <div class="no-webinars">
+                                <img src="img/calendar-empty.svg" alt="No hay webinarios" class="empty-icon">
+                                <h2>¡Aún no hay webinarios programados!</h2>
+                                <p>Vuelve pronto para ver nuestros próximos eventos.</p>
+                            </div>
                         <?php endif; ?>
                     </section>
                 </div>
