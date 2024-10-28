@@ -12,7 +12,7 @@
         <div class="navbar-container">
             <div class="navbar-logo">
                 <a href="/">
-                    <img src="https://www.telsamayorista.com/Documents-FTP/Design/Images/Imagotipos/Imagotipo-Telsa-FullWidth-Original-Pr-V2-251024%201.svg" alt="Logo" class="logo-img">
+                    <img src="https://www.telsamayorista.com/Documents-FTP/Design/Images/Imagotipos/Imagotipo-Telsa-Medium-Pr-V2-251024 1.svg" alt="Logo" class="logo-img">
                 </a>
             </div>
             <ul class="navbar-menu">

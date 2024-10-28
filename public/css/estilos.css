@@ -1820,3 +1820,145 @@ h1, h2, h3, h4, h5, h6 {
 .btn-success i {
     margin-right: 0.8rem;
 }
+
+/* Estilos para la nueva disposición de estadísticas */
+.stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.stat-col {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.stat-col h4 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.stat-col .stat-number {
+    font-size: 5.6rem; /* Aumentado el tamaño */
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .stat-col .stat-number {
+        font-size: 4.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-col .stat-number {
+        font-size: 4rem;
+    }
+}
+
+/* Estilos minimalistas para estadísticas */
+.stats-section {
+    margin: 3rem 0;
+    background: #ffffff;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid #f0f0f0;
+    border-radius: 1rem;
+}
+
+.stat-card:hover {
+    transform: translateY(-0.5rem);
+}
+
+.stat-card h4 {
+    color: #666;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 4.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 1rem 0;
+    line-height: 1;
+}
+
+.stat-details {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem; /* Reducido de 0.8rem a 0.4rem */
+    padding: 0.6rem; /* Reducido de 0.8rem a 0.6rem */
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.stat-item i {
+    font-size: 1.4rem; /* Reducido de 1.6rem */
+    display: flex;
+    align-items: center;
+}
+
+.stat-item span {
+    display: flex;
+    align-items: center;
+}
+
+/* Colores para los estados */
+.stat-item.confirmados i {
+    color: #28a745;
+    margin-right: 0.2rem; /* Añadido margen específico más pequeño */
+}
+
+.stat-item.pendientes i {
+    color: #ffc107;
+    margin-right: 0.2rem;
+}
+
+.stat-item.cancelados i {
+    color: #dc3545;
+    margin-right: 0.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 3.6rem;
+    }
+}

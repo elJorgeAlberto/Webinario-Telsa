@@ -122,33 +122,31 @@ if ($request_uri == '/' || $request_uri == '/index.php') {
                     <?php endif; ?>
 
                     <section class="stats-section">
-                        <h3>Estadísticas</h3>
                         <div class="stats-grid">
                             <div class="stat-card">
                                 <h4>Webinars Disponibles</h4>
                                 <p class="stat-number"><?php echo $total_webinarios; ?></p>
                             </div>
+
                             <?php if(($_SESSION['rol'] ?? 'usuario') === 'usuario'): ?>
                                 <div class="stat-card">
-                                    <h4>Inscripción a Webinars</h4>
+                                    <h4>Estado de Inscripciones</h4>
                                     <div class="stat-details">
-                                        <p class="stat-item confirmados">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Confirmados: <?php echo $total_confirmados; ?></span>
-                                        </p>
-                                        <p class="stat-item pendientes">
-                                            <i class="fas fa-clock"></i>
-                                            <span>Pendientes: <?php echo $total_pendientes; ?></span>
-                                        </p>
-                                        <p class="stat-item cancelados">
-                                            <i class="fas fa-times-circle"></i>
-                                            <span>Cancelados: <?php echo $total_cancelados; ?></span>
-                                        </p>
+                                        <div class="stat-item confirmados"> 
+                                            <span><i class="fas fa-check-circle"></i> Confirmados: <?php echo $total_confirmados; ?></span>
+                                        </div>
+                                        <div class="stat-item pendientes">                                
+                                           <span> <i class="fas fa-clock"></i>Pendientes: <?php echo $total_pendientes; ?></span>
+                                        </div>
+                                        <div class="stat-item cancelados">
+                                            <span><i class="fas fa-times-circle"></i>Cancelados: <?php echo $total_cancelados; ?></span>
+                                        </div>
                                     </div>
                                 </div>
                             <?php endif; ?>
+
                             <div class="stat-card">
-                                <h4>Webinars <?php echo ($_SESSION['rol'] ?? '') === 'admin' ? 'Realizados' : 'Completados'; ?></h4>
+                                <h4>Webinars Completados</h4>
                                 <p class="stat-number"><?php echo isset($total_completados) ? $total_completados : '0'; ?></p>
                             </div>
                         </div>
