@@ -18,6 +18,33 @@ $webinar_id = $_GET['id'];
 $mensaje = ''; // Inicializar variable mensaje
 $tipo_mensaje = ''; // Inicializar variable tipo_mensaje
 
+// Primero obtenemos los datos del webinar y participantes
+$sql = "SELECT 
+            w.*,
+            u.nombre as nombre_usuario,
+            u.email,
+            u.username,
+            i.id as inscripcion_id,
+            i.estado,
+            i.fecha_inscripcion,
+            i.asistencia
+        FROM webinarios w
+        LEFT JOIN inscripciones i ON w.id = i.webinar_id
+        LEFT JOIN usuarios u ON i.usuario_id = u.id
+        WHERE w.id = :webinar_id
+        ORDER BY i.fecha_inscripcion DESC";
+
+$stmt = $conexion->prepare($sql);
+$stmt->bindParam(':webinar_id', $webinar_id);
+$stmt->execute();
+$participantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Verificar si hay datos
+if (empty($participantes)) {
+    header("location: admin_dashboard.php");
+    exit;
+}
+
 // Agregar manejo de acciones POST para actualizar estado y asistencia
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     if ($_POST['action'] === 'update_status') {
@@ -65,26 +92,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     }
 }
 
-// Modificar la consulta para incluir el ID de la inscripción
-$sql = "SELECT 
-            w.*,
-            u.nombre as nombre_usuario,
-            u.email,
-            u.username,
-            i.id as inscripcion_id,
-            i.estado,
-            i.fecha_inscripcion,
-            i.asistencia
-        FROM webinarios w
-        LEFT JOIN inscripciones i ON w.id = i.webinar_id
-        LEFT JOIN usuarios u ON i.usuario_id = u.id
-        WHERE w.id = :webinar_id
-        ORDER BY i.fecha_inscripcion DESC";
+// Agregar manejo para la exportación a Excel
+if (isset($_POST['action']) && $_POST['action'] === 'export_excel') {
+    // Configurar headers para descarga de Excel
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment; filename="reporte_webinar_' . $webinar_id . '_' . date('Y-m-d') . '.xls"');
+    header('Pragma: no-cache');
+    header('Expires: 0');
 
-$stmt = $conexion->prepare($sql);
-$stmt->bindParam(':webinar_id', $webinar_id);
-$stmt->execute();
-$participantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Crear el contenido del Excel
+    echo "<!DOCTYPE html>";
+    echo "<html>";
+    echo "<head>";
+    echo "<meta charset='UTF-8'>";
+    echo "</head>";
+    echo "<body>";
+    echo "<table border='1'>";
+    
+    // Encabezados
+    echo "<tr>";
+    echo "<th colspan='7'>" . htmlspecialchars($participantes[0]['nombre']) . "</th>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<th>Usuario</th>";
+    echo "<th>Nombre</th>";
+    echo "<th>Email</th>";
+    echo "<th>Estado</th>";
+    echo "<th>Fecha Inscripción</th>";
+    echo "<th>Asistencia</th>";
+    echo "</tr>";
+
+    // Datos
+    foreach ($participantes as $participante) {
+        if ($participante['nombre_usuario']) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($participante['username']) . "</td>";
+            echo "<td>" . htmlspecialchars($participante['nombre_usuario']) . "</td>";
+            echo "<td>" . htmlspecialchars($participante['email']) . "</td>";
+            echo "<td>" . htmlspecialchars($participante['estado']) . "</td>";
+            echo "<td>" . date('d/m/Y H:i', strtotime($participante['fecha_inscripcion'])) . "</td>";
+            echo "<td>" . ($participante['asistencia'] ? 'Sí' : 'No') . "</td>";
+            echo "</tr>";
+        }
+    }
+
+    echo "</table>";
+    echo "</body>";
+    echo "</html>";
+    exit;
+}
 
 include __DIR__ . '/../views/header.php';
 ?>
@@ -105,6 +161,15 @@ include __DIR__ . '/../views/header.php';
 
     <div class="participantes-list">
         <h2>Participantes - <?php echo htmlspecialchars($participantes[0]['nombre']); ?></h2>
+
+        <div class="export-section">
+            <form method="post" style="display: inline;">
+                <input type="hidden" name="action" value="export_excel">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-file-excel"></i> Exportar a Excel
+                </button>
+            </form>
+        </div>
 
         <?php if($mensaje): ?>
             <p class="<?php echo $tipo_mensaje === 'success' ? 'success-message' : 'error-message'; ?>">

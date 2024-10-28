@@ -12,8 +12,7 @@
         <div class="navbar-container">
             <div class="navbar-logo">
                 <a href="/">
-                    <img src="/img/logo.png" alt="Logo" class="logo-img">
-                    ReservasTelsa
+                    <img src="https://www.telsamayorista.com/Documents-FTP/Design/Images/Imagotipos/Imagotipo-Telsa-FullWidth-Original-Pr-V2-251024%201.svg" alt="Logo" class="logo-img">
                 </a>
             </div>
             <ul class="navbar-menu">

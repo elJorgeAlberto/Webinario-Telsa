@@ -1375,7 +1375,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-links a:hover,
 .footer-contact a:hover {
-    color: var(--color-primary);
+    color: #ffffff; /* Cambiado a blanco */
 }
 
 /* Información de contacto */
@@ -1417,7 +1417,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .social-link:hover {
-    background-color: var(--color-primary);
+    background-color: #ffffff; /* Fondo blanco */
+    color: var(--color-primary); /* Color del icono cambia al color primario */
     transform: translateY(-0.3rem);
 }
 
@@ -1799,4 +1800,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-icon:hover {
     color: var(--color-primary-hover);
+}
+
+/* Estilos para la sección de exportación */
+.export-section {
+    margin: 2rem 0;
+    text-align: right;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-success i {
+    margin-right: 0.8rem;
 }

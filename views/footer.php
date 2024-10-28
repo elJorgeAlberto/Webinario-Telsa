@@ -2,9 +2,9 @@
     <div class="footer-content container">
         <!-- Sección del logo y descripción -->
         <div class="footer-brand">
-            <img src="/img/logo.png" alt="Logo ReservasTelsa" class="footer-logo">
+            <img src="https://www.telsamayorista.com/Documents-FTP/Design/Images/Imagotipos/Imagotipo-Telsa-Medium-Negative-Pr-V2-251024 2.svg" alt="Logo ReservasTelsa" class="footer-logo">
             <p class="footer-description">
-                Somos una empresa comprometida con la innovación y el desarrollo tecnológico.
+                Tu socio tecnológico en la transformación digital.
             </p>
         </div>
 
@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Monterrey, Nuevo León, México</span>
+                    <span>Ote. 65 a 2848, Asturias, Cuauhtémoc, 06580 Ciudad de México, CDMX</span>
                 </li>
             </ul>
         </div>
